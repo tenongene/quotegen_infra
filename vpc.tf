@@ -38,7 +38,6 @@ module "vpc" {
 	
   }]
 
-
   default_security_group_egress  = [
     {
 		from_port   = 0
@@ -47,8 +46,7 @@ module "vpc" {
 		cidr_blocks = "0.0.0.0/0"
 	}
   ]
-
-
+	
   map_public_ip_on_launch = true
 }
 

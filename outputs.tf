@@ -17,4 +17,12 @@ output "public_subnets" {
   description = "Target group arn"
   value = module.nlb.target_group_arns
  }
+output "lb-security_group_id" {
+  description = "Load balancer security group id"
+  value = aws_security_group.quotegen-app-nlb-sg.id
+}
 
+output "default_security_group_id" {
+  description = "Default security group id"
+  value = module.vpc.default_security_group_id
+}

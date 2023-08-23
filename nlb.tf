@@ -2,16 +2,12 @@ module "nlb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 8.0"
 
-
   name = "quotegen-app-nlb"
   load_balancer_type = "network"
   vpc_id             = module.vpc.vpc_id
   subnets = module.vpc.public_subnets
   create_security_group = false
-
-
   security_groups = ["${aws_security_group.quotegen-app-nlb-sg.id}"]
-
 
   target_groups = [
     {
@@ -22,7 +18,6 @@ module "nlb" {
   
     }
   ]
-
   http_tcp_listeners = [
     {
       port               = 80
@@ -31,9 +26,7 @@ module "nlb" {
     }]
 
   depends_on = [ module.vpc ]
-
 }
-
 
 resource "aws_security_group" "quotegen-app-nlb-sg" {
   name        = "quotegen-app-nlb-sg"
@@ -47,7 +40,6 @@ resource "aws_security_group" "quotegen-app-nlb-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   egress {
     from_port   = 0
     to_port     = 0
